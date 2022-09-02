@@ -62,13 +62,17 @@ This will regenerate the helloworld/helloworld.pb.go and helloworld/helloworld_g
 
 4 - Update the client - greeter_client/main.go
 
-    ```go
-    r, err = c.SayHelloAgain(ctx, &pb.HelloRequest{Name: *name})
-    if err != nil {
-            log.Fatalf("could not greet: %v", err)
-    }
-    log.Printf("Greeting: %s", r.GetMessage())
-    ```
+
+```go
+r, err = c.SayHelloAgain(ctx, &pb.HelloRequest{Name: *name})
+if err != nil {
+        log.Fatalf("could not greet: %v", err)
+}
+log.Printf("Greeting: %s", r.GetMessage())
+``` 
+    
+    
+   
 
 5 - Run
 
