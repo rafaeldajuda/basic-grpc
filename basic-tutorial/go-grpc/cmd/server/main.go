@@ -25,17 +25,21 @@ func (service *Server) RequestMessage(ctx context.Context, req *pb.Request) (*pb
 func (service *Server) mustEmbedUnimplementedSendMessageServer() {}
 
 func main() {
+
+	// create grpc server
 	grpcServer := grpc.NewServer()
 
-	// registrar server
+	// register server
 	pb.RegisterSendMessageServer(grpcServer, &Server{})
 
+	// open tcp connection
 	port := ":5000"
 	listener, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// start grpc server
 	err = grpcServer.Serve(listener)
 	if err != nil {
 		log.Fatal(err)

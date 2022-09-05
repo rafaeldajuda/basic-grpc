@@ -11,19 +11,21 @@ import (
 
 func main() {
 
-	// conexao
+	// create connection
 	conn, err := grpc.Dial("localhost:5000", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// resgistar client
+	// register client
 	client := pb.NewSendMessageClient(conn)
 
+	// body request
 	req := &pb.Request{
 		Message: "Hello World",
 	}
 
+	// request
 	res, err := client.RequestMessage(context.Background(), req)
 	if err != nil {
 		log.Fatal(err)
