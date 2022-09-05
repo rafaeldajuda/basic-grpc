@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+// option go_package = "/<nome-pacote>" - onde ficará os arquivos gerados pelo proto 
+option go_package = "/pb";
+
+// message <Nome> - formato da mensagem de requisição
+message Request {
+    string Message = 1;
+}
+
+// message <Nome> - formato da mensagem de resposta
+message Response {
+    int32 Status = 1;
+}
+
+// service <Nome> - é onde fica as funções do nosso serviço 
+service SendMessage {
+    rpc RequestMessage (Request) returns (Response){}
+}
+
+
+// gerar arquivos proto
+// protoc --go_out=. --go-grpc_out=. proto/*.proto
